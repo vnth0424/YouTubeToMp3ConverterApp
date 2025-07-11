@@ -1,0 +1,32 @@
+﻿@page
+@model YouTubeToMp3ConverterApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "YouTube to MP3 Converter";
+}
+
+<h1>YouTube to MP3 Converter</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label for="youTubeUrl">YouTube URL:</label>
+        <input type="text" class="form-control" id="youTubeUrl" asp-for="YouTubeUrl" placeholder="Enter YouTube URL" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Convert to MP3</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-info mt-3">@Model.Message</div>
+}
+
+<div class="mt-3">
+    <h4>Conversion Progress</h4>
+    <div class="progress">
+        <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.7/signalr.js"></script>
+    <script src="/js/site.js"></script>
+}
